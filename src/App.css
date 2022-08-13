@@ -1,0 +1,136 @@
+.containerAll{
+    width: 100%;
+    margin-top: 13%;
+    display: grid;
+    justify-content: center;   
+}
+
+.containerGrid{
+    width: 300px;
+    min-height: 280px;
+    border: 1px solid #A6874E;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.infoLogin{
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    height: 75px;
+    margin: 0px 0px 0px 20px;
+}
+
+label{
+    color: #A6874E;
+}
+
+
+.inputInfoLogin{
+    border: 1px solid #A6874E;
+    color: rgb(148, 142, 142);
+    border-radius: 5px;
+    outline: none;
+    width: 258px;
+    margin-top: 5px;
+    padding: 6px 10px 6px 10px;
+}
+
+.inputInfoLogin:hover {
+    border: 1px solid #F2BE22;
+}
+
+.btnSubmit, .creerCompte{
+    width: 100%;
+    text-align: center;
+    margin-top: 1px;
+}
+
+.aCreerCompte{
+    color: #267365;
+    text-decoration: underline;
+}
+
+.aCreerCompte:hover{
+    color: #278A5B;
+}
+
+.inputBtnSubmit{
+    border: 1px solid #A6874E;
+    border-radius: 5px;
+    padding: 5px 20px;
+    color: #A6874E;
+}
+
+.inputBtnSubmit:hover{
+    border: 1px solid #F2BE22;
+    color: #F2BE22;
+}
+
+span{
+    color: #F2BE22;
+    background-color: #A6874E;
+    border: #267365;
+}
+
+
+
+/*
+h1{
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.containerAllForm{
+    display: flex;
+    justify-content: center;
+}
+
+.containerAllCard{
+    width: 100%;
+    min-height: 550px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#rightTitle, #idTaskRight{
+    background-color: #F2BE22;
+}
+
+#centerTitle, #idTaskCenter{
+    background-color: #A6874E;
+}
+#leftTitle, #idTaskLeft{
+    background-color: #267365;
+}
+
+#idContainerCardLeft{
+    border: 1px solid #267365;
+}
+
+#idContainerCardCenter{
+    border: 1px solid #A6874E;
+}
+
+#idContainerCardRight{
+    border: 1px solid #F2BE22;
+}
+
+#idInputTaskLeft:hover{
+    color: #A6874E;
+    cursor: pointer;
+}
+#idInputTaskCenter:hover{
+    color: #F2BE22;
+    cursor: pointer;
+}
+#idInputTaskRight:hover{
+    color: #267365;
+    cursor: pointer;
+}
+
+*/

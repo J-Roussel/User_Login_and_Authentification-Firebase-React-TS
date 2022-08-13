@@ -2,6 +2,9 @@ import React, {FC, useState} from "react";
 import './bootstrap-4.5.3-dist/css/bootstrap.min.css';
 import './App.css';
 import BaseModalWrapper from "./ModalPopUp/BaseModalWrapper";
+import logoFacebook from "../src/images/facebookk.png";
+import logoGoogle from "../src/images/google.png";
+import logoGithub from "../src/images/github.png";
 
 
 
@@ -39,6 +42,17 @@ const App:FC = ():JSX.Element => {
           </div>
           <div className="btnSubmit">
             <input type="submit" value="SE CONNECTER" className="inputBtnSubmit"/>
+            <div className="authentify-with">
+              <a href="#" className="facebook-link">
+                <img src={logoFacebook} alt="facebook" className="auth-logo"/>
+              </a>
+              <a href="">
+                <img src={logoGoogle} alt="google" className="auth-logo"/>
+              </a>
+              <a href="">
+                <img src={logoGithub} alt="github" className="auth-logo"/>
+              </a>
+            </div>
           </div>
           <div className="creerCompte">
             <a href="#" className="aCreerCompte" onClick={toggleModal}>créer un compte</a>

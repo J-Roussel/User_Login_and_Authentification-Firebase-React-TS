@@ -76,6 +76,19 @@ span{
 }
 
 
+.auth-logo{
+    width: 6.5%;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 2%;
+    opacity: 60%;
+}
+
+.auth-logo:hover{
+    
+    opacity: 100%;
+}
+
 
 /*
 h1{

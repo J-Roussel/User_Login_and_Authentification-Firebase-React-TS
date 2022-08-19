@@ -20,9 +20,11 @@ const AuthRoute:FC<IAuthRouteProps> = ( props:PropsWithChildren) => {
     const AuthCheck = onAuthStateChanged(auth, (user) => {
         if(user){
             setLoading(false);
+            console.log("user detected");
+            
         }
         else {
-            console.log("unauthorised");         
+            console.log("no user detected");         
             navigate('/Connexion');
         }
     });

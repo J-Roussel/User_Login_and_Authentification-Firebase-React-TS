@@ -7,13 +7,15 @@ import '../App.css';
 import BaseModalWrapper from "../ModalPopUp/BaseModalWrapper";
 import {useNavigate} from "react-router-dom";
 
-import {getAuth, GoogleAuthProvider, signInWithPopup} from "firebase/auth";
+import {getAuth, GoogleAuthProvider, signInWithPopup, FacebookAuthProvider, GithubAuthProvider} from "firebase/auth";
 
 const Connexion:FC = ():JSX.Element => {
 
     const auth = getAuth();
     const navigate = useNavigate();
     const [authing, setAuthing] = useState<boolean>(false);
+    const [fbAuthing, setFbAuthing] = useState<boolean>(false);
+    const [githubAuthing, setGitHubAuthing] = useState<boolean>(false);
 
     const signInWithGoogle = async () => {
       setAuthing(true);
@@ -29,6 +31,37 @@ const Connexion:FC = ():JSX.Element => {
         setAuthing(false);
       })
     }
+
+    const signInWithFacebook = async () => {
+      setFbAuthing(true);
+
+      signInWithPopup(auth, new FacebookAuthProvider())
+      .then((response) => {
+        console.log(response.user.uid);
+        navigate("/");
+        
+      })
+      .catch(error => {
+        console.log(error);
+        setFbAuthing(false);
+      })
+    }
+
+    const signInWithGitHub = async () => {
+      setGitHubAuthing(true);
+
+      signInWithPopup(auth, new GithubAuthProvider())
+      .then((response) => {
+        console.log(response.user.uid);
+        navigate("/");
+        
+      })
+      .catch(error => {
+        console.log(error);
+        setGitHubAuthing(false);
+      })
+    }
+
 
     //changer les valeurs des champs
     const [mailValue, setMailValue] = useState("");
@@ -63,13 +96,13 @@ const Connexion:FC = ():JSX.Element => {
             <div className="btnSubmit">
               <input type="submit" value="SE CONNECTER" className="inputBtnSubmit"/>
               <div className="authentify-with">
-                <button className="methods-link">
+                <button onClick={() => signInWithFacebook()} disabled ={fbAuthing} className="methods-link">
                   <img src={logoFacebook} alt="facebook" className="auth-logo"/>
                 </button>
                 <button onClick={() => signInWithGoogle()} disabled ={authing} className="methods-link">
                   <img src={logoGoogle} alt="google" className="auth-logo"/>
                 </button>
-                <button className="methods-link">
+                <button onClick={() => signInWithGitHub()} disabled={githubAuthing} className="methods-link">
                   <img src={logoGithub} alt="github" className="auth-logo"/>
                 </button>
               </div>

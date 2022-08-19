@@ -3,11 +3,16 @@ import welcomeImg from "../images/welcome.png";
 import '../App.css';
 import '../pagesComponentss/welcome.css';
 
+import {getAuth, signOut} from "firebase/auth";
+import {useNavigate} from "react-router-dom";
+
 
 export interface IWelcomeProps {};
 
 const Welcome:FC<IWelcomeProps> = ():JSX.Element => {
 
+    const auth = getAuth();
+    const navigate = useNavigate();
 
     return (
         <div className="containerAll">
@@ -16,7 +21,15 @@ const Welcome:FC<IWelcomeProps> = ():JSX.Element => {
                     <img src={welcomeImg} alt="welcome" className="welcomeImg"/>
                 </div>
                 <div className="deconnecter">
-                    <input type="submit" value="SE DECONNECTER" className="inputBtnSubmit"/>
+                    <input 
+                        onClick={() => {
+                            signOut(auth);
+                            navigate('/Connexion');
+                        
+                        }} 
+                        type="submit" 
+                        value="SE DECONNECTER" 
+                        className="inputBtnSubmit"/>
                 </div>
             </div>
         </div>

@@ -41,19 +41,19 @@ const Connexion:FC = ():JSX.Element => {
             <div className="btnSubmit">
               <input type="submit" value="SE CONNECTER" className="inputBtnSubmit"/>
               <div className="authentify-with">
-                <a href="www.wikipedia.com" className="facebook-link">
+                <a href="#" className="facebook-link">
                   <img src={logoFacebook} alt="facebook" className="auth-logo"/>
                 </a>
-                <a href="www.wikipedia.com">
+                <a href="">
                   <img src={logoGoogle} alt="google" className="auth-logo"/>
                 </a>
-                <a href="www.wikipedia.com">
+                <a href="">
                   <img src={logoGithub} alt="github" className="auth-logo"/>
                 </a>
               </div>
             </div>
             <div className="creerCompte">
-              <a href="www.wikipedia.com" className="aCreerCompte" onClick={toggleModal}>créer un compte</a>
+              <a href="#" className="aCreerCompte" onClick={toggleModal}>créer un compte</a>
             </div>
           </div>
         </div>

@@ -1,4 +1,7 @@
 import React,{ FC } from "react";
+import welcomeImg from "../images/welcome.png";
+import '../App.css';
+import '../pagesComponentss/welcome.css';
 
 
 export interface IWelcomeProps {};
@@ -7,9 +10,16 @@ const Welcome:FC<IWelcomeProps> = ():JSX.Element => {
 
 
     return (
-        <>
-            <p>lkjsdf lkjdflksdf lkjsd flksdjf lkjsdfl Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem aut ex soluta laboriosam porro ab iste nesciunt reprehenderit quaerat omnis esse tenetur magni, aliquid, recusandae natus! Sed libero nihil repudiandae!</p>
-        </>
+        <div className="containerAll">
+            <div className="containerGrid">
+                <div className="containerWelcomeImg">
+                    <img src={welcomeImg} alt="welcome" className="welcomeImg"/>
+                </div>
+                <div className="deconnecter">
+                    <input type="submit" value="SE DECONNECTER" className="inputBtnSubmit"/>
+                </div>
+            </div>
+        </div>
     );
 
 }

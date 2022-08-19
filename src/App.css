@@ -77,7 +77,7 @@ span{
 
 
 .auth-logo{
-    width: 6.5%;
+    width: 100%;
     margin-left: 2%;
     margin-right: 2%;
     margin-top: 2%;
@@ -85,10 +85,15 @@ span{
 }
 
 .auth-logo:hover{
-    
     opacity: 100%;
 }
 
+.methods-link{
+    width: 6.8%;
+    height: auto;
+    border: none;
+    margin: 2% 1%;
+}
 
 /*
 h1{

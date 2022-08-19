@@ -63,15 +63,15 @@ const Connexion:FC = ():JSX.Element => {
             <div className="btnSubmit">
               <input type="submit" value="SE CONNECTER" className="inputBtnSubmit"/>
               <div className="authentify-with">
-                <a href="#" className="facebook-link">
+                <button className="methods-link">
                   <img src={logoFacebook} alt="facebook" className="auth-logo"/>
-                </a>
-                <button onClick={() => signInWithGoogle()} disabled ={authing}>
+                </button>
+                <button onClick={() => signInWithGoogle()} disabled ={authing} className="methods-link">
                   <img src={logoGoogle} alt="google" className="auth-logo"/>
                 </button>
-                <a href="">
+                <button className="methods-link">
                   <img src={logoGithub} alt="github" className="auth-logo"/>
-                </a>
+                </button>
               </div>
             </div>
             <div className="creerCompte">

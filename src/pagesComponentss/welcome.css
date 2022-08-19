@@ -1,0 +1,31 @@
+.containerWelcomeImg{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60%;
+}
+
+.welcomeImg{
+    width: 50%;
+    animation-name: welcome;
+    animation-duration: 750ms;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+.deconnecter{
+    display: flex;
+    justify-content: center;
+    margin-top: 7%;
+}
+
+@keyframes welcome{
+    from {
+        opacity: 50%;
+    }
+  
+    to {
+      opacity: 100%;
+    }
+  }
+  

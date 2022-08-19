@@ -63,6 +63,7 @@ const Connexion:FC = ():JSX.Element => {
         console.log("Misy error");
         setAuthing(false);
         console.error(error);
+        navigate('/');
       }
     };
 
@@ -99,7 +100,10 @@ const Connexion:FC = ():JSX.Element => {
                 </label>
             </div>
             <div className="btnSubmit">
-              <input onClick={() => signIn()} type="submit" value="SE CONNECTER" className="inputBtnSubmit"/>
+              <input onClick={() => {
+                signIn();
+                navigate("/");
+                }} type="submit" value="SE CONNECTER" className="inputBtnSubmit"/>
               <div className="authentify-with">
                 <button onClick={() => signInWithSocialMedia(Providers.facebook)} disabled ={authing} className="methods-link">
                   <img src={logoFacebook} alt="facebook" className="auth-logo"/>

@@ -5,8 +5,30 @@ import logoGithub from "../../src/images/github.png";
 import '../bootstrap-4.5.3-dist/css/bootstrap.min.css';
 import '../App.css';
 import BaseModalWrapper from "../ModalPopUp/BaseModalWrapper";
+import {useNavigate} from "react-router-dom";
+
+import {getAuth, GoogleAuthProvider, signInWithPopup} from "firebase/auth";
 
 const Connexion:FC = ():JSX.Element => {
+
+    const auth = getAuth();
+    const navigate = useNavigate();
+    const [authing, setAuthing] = useState<boolean>(false);
+
+    const signInWithGoogle = async () => {
+      setAuthing(true);
+
+      signInWithPopup(auth, new GoogleAuthProvider())
+      .then((response) => {
+        console.log(response.user.uid);
+        navigate("/");
+        
+      })
+      .catch(error => {
+        console.log(error);
+        setAuthing(false);
+      })
+    }
 
     //changer les valeurs des champs
     const [mailValue, setMailValue] = useState("");
@@ -44,9 +66,9 @@ const Connexion:FC = ():JSX.Element => {
                 <a href="#" className="facebook-link">
                   <img src={logoFacebook} alt="facebook" className="auth-logo"/>
                 </a>
-                <a href="">
+                <button onClick={() => signInWithGoogle()} disabled ={authing}>
                   <img src={logoGoogle} alt="google" className="auth-logo"/>
-                </a>
+                </button>
                 <a href="">
                   <img src={logoGithub} alt="github" className="auth-logo"/>
                 </a>

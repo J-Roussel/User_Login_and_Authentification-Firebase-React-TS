@@ -1,4 +1,4 @@
-import React, {FC, useState} from "react";
+import React, {FC,  useState, useContext, useRef} from "react";
 import logoFacebook from "../../src/images/facebookk.png";
 import logoGoogle from "../../src/images/google.png";
 import logoGithub from "../../src/images/github.png";
@@ -7,9 +7,10 @@ import '../App.css';
 import BaseModalWrapper from "../ModalPopUp/BaseModalWrapper";
 import {useNavigate} from "react-router-dom";
 
+import { AuthContext } from "../context/authContext";
 
 
-import {AuthProvider, UserCredential, getAuth, signInWithPopup} from "firebase/auth";
+import {AuthProvider, UserCredential, getAuth, signInWithPopup, signInWithEmailAndPassword} from "firebase/auth";
 import { Providers } from "../config/firebase";
 
 const Connexion:FC = ():JSX.Element => {
@@ -20,6 +21,7 @@ const Connexion:FC = ():JSX.Element => {
 
 
 
+    //sign in : social media
     const signInWithSocialMedia = async (provider: AuthProvider) => {
       setAuthing(true);
       new Promise<UserCredential>((resolve, reject) => {
@@ -38,6 +40,26 @@ const Connexion:FC = ():JSX.Element => {
       });
 
     }
+
+
+    //sign in : email / password
+    const user = useContext(AuthContext);
+    const emailRef = useRef<HTMLInputElement>(null);
+    const passwordRef = useRef<HTMLInputElement>(null);
+
+
+    
+    const signIn = async () => {
+      try {
+        await signInWithEmailAndPassword( auth,emailRef.current!.value,passwordRef.current!.value);
+        console.log("nety");
+        
+      } catch (error) {
+        console.log("Misy error");
+        
+        console.error(error);
+      }
+    };
 
 
 
@@ -63,16 +85,16 @@ const Connexion:FC = ():JSX.Element => {
           <div className="containerAllForm">
             <div className="infoLogin">
                 <label htmlFor="email">Adresse email <br />
-                  <input type="email" placeholder="rakoto@gmail.com" value={mailValue} className="inputInfoLogin" onChange={handleChange} name="mailValue"/>
+                  <input ref={emailRef} type="email" placeholder="rakoto@gmail.com" value={mailValue} className="inputInfoLogin" onChange={handleChange} name="mailValue"/>
                 </label>
             </div>
             <div className="infoLogin">
                 <label htmlFor="password">Mot de passe <br />
-                  <input type="password" placeholder="Mot de passe" value={passwordValue} className="inputInfoLogin" name="passwordValue" onChange={handleChange}/>
+                  <input ref={passwordRef} type="password" placeholder="Mot de passe" value={passwordValue} className="inputInfoLogin" name="passwordValue" onChange={handleChange}/>
                 </label>
             </div>
             <div className="btnSubmit">
-              <input type="submit" value="SE CONNECTER" className="inputBtnSubmit"/>
+              <input onClick={() => signIn()} type="submit" value="SE CONNECTER" className="inputBtnSubmit"/>
               <div className="authentify-with">
                 <button onClick={() => signInWithSocialMedia(Providers.facebook)} disabled ={authing} className="methods-link">
                   <img src={logoFacebook} alt="facebook" className="auth-logo"/>

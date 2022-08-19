@@ -34,8 +34,10 @@ const Connexion:FC = ():JSX.Element => {
         })
         .catch(error => {
           reject(error);
+          console.log("misy error");
           console.log(error);
           setAuthing(false);
+          navigate("/");
         });
       });
 

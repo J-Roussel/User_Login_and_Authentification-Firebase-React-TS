@@ -51,12 +51,15 @@ const Connexion:FC = ():JSX.Element => {
     
     const signIn = async () => {
       try {
-        await signInWithEmailAndPassword( auth,emailRef.current!.value,passwordRef.current!.value);
-        console.log("nety");
+        await signInWithEmailAndPassword( auth,emailRef.current!.value,passwordRef.current!.value)
+        .then((response => {
+          console.log("nety");
+          navigate("/");
+        }));
         
       } catch (error) {
         console.log("Misy error");
-        
+        setAuthing(false);
         console.error(error);
       }
     };

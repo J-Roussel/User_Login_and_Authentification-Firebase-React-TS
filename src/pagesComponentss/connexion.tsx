@@ -7,60 +7,38 @@ import '../App.css';
 import BaseModalWrapper from "../ModalPopUp/BaseModalWrapper";
 import {useNavigate} from "react-router-dom";
 
-import {getAuth, GoogleAuthProvider, signInWithPopup, FacebookAuthProvider, GithubAuthProvider} from "firebase/auth";
+
+
+import {AuthProvider, UserCredential, getAuth, signInWithPopup} from "firebase/auth";
+import { Providers } from "../config/firebase";
 
 const Connexion:FC = ():JSX.Element => {
 
     const auth = getAuth();
     const navigate = useNavigate();
     const [authing, setAuthing] = useState<boolean>(false);
-    const [fbAuthing, setFbAuthing] = useState<boolean>(false);
-    const [githubAuthing, setGitHubAuthing] = useState<boolean>(false);
 
-    const signInWithGoogle = async () => {
+
+
+    const signInWithSocialMedia = async (provider: AuthProvider) => {
       setAuthing(true);
+      new Promise<UserCredential>((resolve, reject) => {
+        signInWithPopup(auth, provider)
+        .then((result) => {
+          resolve(result);
+          console.log(result.user.uid);
+          navigate("/");
+          
+        })
+        .catch(error => {
+          reject(error);
+          console.log(error);
+          setAuthing(false);
+        });
+      });
 
-      signInWithPopup(auth, new GoogleAuthProvider())
-      .then((response) => {
-        console.log(response.user.uid);
-        navigate("/");
-        
-      })
-      .catch(error => {
-        console.log(error);
-        setAuthing(false);
-      })
     }
 
-    const signInWithFacebook = async () => {
-      setFbAuthing(true);
-
-      signInWithPopup(auth, new FacebookAuthProvider())
-      .then((response) => {
-        console.log(response.user.uid);
-        navigate("/");
-        
-      })
-      .catch(error => {
-        console.log(error);
-        setFbAuthing(false);
-      })
-    }
-
-    const signInWithGitHub = async () => {
-      setGitHubAuthing(true);
-
-      signInWithPopup(auth, new GithubAuthProvider())
-      .then((response) => {
-        console.log(response.user.uid);
-        navigate("/");
-        
-      })
-      .catch(error => {
-        console.log(error);
-        setGitHubAuthing(false);
-      })
-    }
 
 
     //changer les valeurs des champs
@@ -96,13 +74,13 @@ const Connexion:FC = ():JSX.Element => {
             <div className="btnSubmit">
               <input type="submit" value="SE CONNECTER" className="inputBtnSubmit"/>
               <div className="authentify-with">
-                <button onClick={() => signInWithFacebook()} disabled ={fbAuthing} className="methods-link">
+                <button onClick={() => signInWithSocialMedia(Providers.facebook)} disabled ={authing} className="methods-link">
                   <img src={logoFacebook} alt="facebook" className="auth-logo"/>
                 </button>
-                <button onClick={() => signInWithGoogle()} disabled ={authing} className="methods-link">
+                <button onClick={() => signInWithSocialMedia(Providers.google)} disabled ={authing} className="methods-link">
                   <img src={logoGoogle} alt="google" className="auth-logo"/>
                 </button>
-                <button onClick={() => signInWithGitHub()} disabled={githubAuthing} className="methods-link">
+                <button onClick={() => signInWithSocialMedia(Providers.github)} disabled={authing} className="methods-link">
                   <img src={logoGithub} alt="github" className="auth-logo"/>
                 </button>
               </div>

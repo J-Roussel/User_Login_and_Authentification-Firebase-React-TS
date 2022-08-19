@@ -1,3 +1,4 @@
+import {initializeApp} from "firebase/app";
 import React, {FC} from "react";
 import './bootstrap-4.5.3-dist/css/bootstrap.min.css';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
@@ -5,8 +6,7 @@ import {BrowserRouter, Routes, Route} from "react-router-dom";
 import Welcome from "./pagesComponentss/welcome";
 import Connexion from "./pagesComponentss/connexion";
 
-import {initializeApp} from "firebase/app";
-import { config } from "./auth/config";
+import config  from "./auth/config";
 import AuthRoute from "./pagesComponentss/AuthRout";
 
 

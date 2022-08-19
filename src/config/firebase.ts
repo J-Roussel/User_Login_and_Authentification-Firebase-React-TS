@@ -1,8 +1,8 @@
-import firebase from 'firebase/app';
-import {GoogleAuthProvider, FacebookAuthProvider, GithubAuthProvider, getAuth} from 'firebase/auth';
-import config from './config';
+import { GoogleAuthProvider, FacebookAuthProvider, GithubAuthProvider, getAuth} from 'firebase/auth';
+import {initializeApp} from "firebase/app";
+import config from "../auth/config";
 
-const Firebase = firebase.initializeApp(config.firebase);
+const Firebase = initializeApp(config.firebaseConfig);
 
 // authentification methods.
 export const Providers = {
@@ -12,4 +12,5 @@ export const Providers = {
 };
 
 export const auth = getAuth();
+
 export default Firebase;

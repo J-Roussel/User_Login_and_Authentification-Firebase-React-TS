@@ -8,7 +8,7 @@
 .welcomeImg{
     width: 50%;
     animation-name: welcome;
-    animation-duration: 750ms;
+    animation-duration: 2s;
     animation-iteration-count: infinite;
     animation-direction: alternate;
 }
@@ -21,11 +21,13 @@
 
 @keyframes welcome{
     from {
-        opacity: 50%;
+        opacity: 20%;
+        width: 10%;
     }
   
     to {
-      opacity: 100%;
+        opacity: 100%;
+        width: 50%;
     }
   }
   

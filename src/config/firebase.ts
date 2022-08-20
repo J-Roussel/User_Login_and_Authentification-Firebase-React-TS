@@ -1,4 +1,4 @@
-import { GoogleAuthProvider, FacebookAuthProvider, GithubAuthProvider, getAuth} from 'firebase/auth';
+import { GoogleAuthProvider, FacebookAuthProvider, GithubAuthProvider, getAuth, EmailAuthProvider} from 'firebase/auth';
 import {initializeApp} from "firebase/app";
 import config from "../auth/config";
 
@@ -8,9 +8,10 @@ const Firebase = initializeApp(config.firebaseConfig);
 export const Providers = {
     google: new GoogleAuthProvider(),
     facebook: new FacebookAuthProvider(),
-    github: new GithubAuthProvider()
+    github: new GithubAuthProvider(),
+    email: new EmailAuthProvider()
 };
 
-export const auth = getAuth();
+export const auth = getAuth(Firebase);
 
 export default Firebase;

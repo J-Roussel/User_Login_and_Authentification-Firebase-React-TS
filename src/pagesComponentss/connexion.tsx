@@ -7,15 +7,14 @@ import '../App.css';
 import BaseModalWrapper from "../ModalPopUp/BaseModalWrapper";
 import {useNavigate} from "react-router-dom";
 
-import { AuthContext } from "../context/authContext";
+import {auth} from "../config/firebase";
 
 
-import {AuthProvider, UserCredential, getAuth, signInWithPopup, signInWithEmailAndPassword} from "firebase/auth";
+import {AuthProvider, UserCredential, signInWithPopup} from "firebase/auth";
 import { Providers } from "../config/firebase";
 
 const Connexion:FC = ():JSX.Element => {
 
-    const auth = getAuth();
     const navigate = useNavigate();
     const [authing, setAuthing] = useState<boolean>(false);
 
@@ -44,66 +43,50 @@ const Connexion:FC = ():JSX.Element => {
     }
 
 
-    //sign in : email / password
-    const user = useContext(AuthContext);
-    const emailRef = useRef<HTMLInputElement>(null);
-    const passwordRef = useRef<HTMLInputElement>(null);
-
-
     
-    const signIn = async () => {
-      try {
-        await signInWithEmailAndPassword( auth,emailRef.current!.value,passwordRef.current!.value)
-        .then((response => {
-          console.log("nety");
-          navigate("/");
-        }));
-        
-      } catch (error) {
-        console.log("Misy error");
-        setAuthing(false);
-        console.error(error);
-        navigate('/');
-      }
-    };
-
-
-
+    
+    
+    
     //changer les valeurs des champs
     const [mailValue, setMailValue] = useState("");
     const [passwordValue, setPasswordValue] = useState("");
-  
+    
     const handleChange:React.ChangeEventHandler<HTMLInputElement> = (e:React.FormEvent<HTMLInputElement>):void => {
       (e.currentTarget.name === "mailValue")?setMailValue(e.currentTarget.value):setPasswordValue(e.currentTarget.value);
     }
   
+
+
     //modal
     const [isModalVisible, setIsModalVisible] = useState(false);
-  
+    
     const toggleModal = () =>{
       setIsModalVisible(!isModalVisible);
     }
     
-  
+
+
+
+
+    
     return (
       <div className="containerAll" >
         <div className="containerGrid">
           <div className="containerAllForm">
             <div className="infoLogin">
                 <label htmlFor="email">Adresse email <br />
-                  <input ref={emailRef} type="email" placeholder="rakoto@gmail.com" value={mailValue} className="inputInfoLogin" onChange={handleChange} name="mailValue"/>
+                  <input  type="email" placeholder="rakoto@gmail.com" value={mailValue} className="inputInfoLogin" onChange={handleChange} name="mailValue"/>
                 </label>
             </div>
             <div className="infoLogin">
                 <label htmlFor="password">Mot de passe <br />
-                  <input ref={passwordRef} type="password" placeholder="Mot de passe" value={passwordValue} className="inputInfoLogin" name="passwordValue" onChange={handleChange}/>
+                  <input  type="password" placeholder="Mot de passe" value={passwordValue} className="inputInfoLogin" name="passwordValue" onChange={handleChange}/>
                 </label>
             </div>
             <div className="btnSubmit">
               <input onClick={() => {
-                signIn();
-                navigate("/");
-                }} type="submit" value="SE CONNECTER" className="inputBtnSubmit"/>
+                signInWithSocialMedia(Providers.email);
+                }} type="submit" value="SE CONNECTER" className="inputBtnSubmit" disabled ={authing}/>
               <div className="authentify-with">
                 <button onClick={() => signInWithSocialMedia(Providers.facebook)} disabled ={authing} className="methods-link">
                   <img src={logoFacebook} alt="facebook" className="auth-logo"/>

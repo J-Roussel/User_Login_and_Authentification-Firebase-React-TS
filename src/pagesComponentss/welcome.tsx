@@ -3,15 +3,15 @@ import welcomeImg from "../images/welcome.png";
 import '../App.css';
 import '../pagesComponentss/welcome.css';
 
-import {getAuth, signOut} from "firebase/auth";
+import { signOut} from "firebase/auth";
 import {useNavigate} from "react-router-dom";
 
+import {auth} from "../config/firebase";
 
 export interface IWelcomeProps {};
 
 const Welcome:FC<IWelcomeProps> = ():JSX.Element => {
 
-    const auth = getAuth();
     const navigate = useNavigate();
 
     return (
